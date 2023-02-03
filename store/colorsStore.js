@@ -2,24 +2,31 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 
 
 export const useColorsStore = defineStore("ColorsStore", () => {
-const colors = ref([])
+const palette = ref(["5"])
 
 
 
 
 //functions
 async function fetchColorPalette (){
- const newPalette = await fetch("http://colormind.io/api/",{
+
+
+ const res = await fetch("http://colormind.io/api/",{
   method: "POST",
     body : JSON.stringify({"model":"ui"})
  })
-   colors.value.push(await newPalette.json())
+ 
+ const newPalette=  await res.json();
+ palette.value = [];
+ newPalette.result.forEach((el)=>{ palette.value.push(`rgb(${el.toString()})`) })
+ 
+ 
 
 }
 
 
   return {
-   colors,fetchColorPalette
+   palette,fetchColorPalette
   };
 });
 

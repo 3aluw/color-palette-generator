@@ -16,6 +16,8 @@
         </section>
 
         <section>
+
+
             <div class="palette-cont d-flex gap-8 justify-space-around">
                 <div class="color-cont">
                     <div class="color-rec light-shades"></div>
@@ -39,7 +41,11 @@
                 </div>
 
             </div>
-            <div class="css-cont"></div>
+            <div class="css-cont">
+
+                {{ colorsStore.palette }}
+                <button @click="copySnippet">copy</button>
+            </div>
 
         </section>
     </div>
@@ -47,19 +53,43 @@
 
 </template>
 <script setup>
-import { useColorsStore } from '~~/store/colorsStore';
+import { useColorsStore } from '../store/colorsStore';
+const colorsStore = useColorsStore();
+onMounted(async () => {
+    await colorsStore.fetchColorPalette();
+
+})
+
+onMounted(() => {
+    setTimeout(() => { colorImage.value = true }, 1500)
+})
 
 
 const colorImage = ref(false);
-const colorsStore = useColorsStore();
-onMounted(() => setTimeout(() => { colorImage.value = true }, 1500))
 
+
+
+
+//section 2
+
+// colors dic
+
+const colorsDic = reactive({
+    "light-shades": colorsStore.palette[0],
+    "light-accent": colorsStore.palette[1],
+    "main-color": colorsStore.palette[2],
+    "dark-accent": colorsStore.palette[3],
+    "dark-shades": colorsStore.palette[4],
+})
+
+const cssSnippet = ref(null)
+const copySnippet = () => {
+
+    navigator.clipboard.writeText(colorsStore.palette[0].result);
+
+}
 </script>
 <style>
-.recoler {
-    filter: grayscale(0);
-}
-
 section {
     margin-bottom: 5rem;
 }
@@ -77,6 +107,9 @@ section {
     transition: all 6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
+.recoler {
+    filter: grayscale(0);
+}
 
 .main-text-cont {
     text-align: center;
@@ -119,5 +152,27 @@ section {
     background: blue;
     width: 100%;
     aspect-ratio: 1 / 1;
+}
+
+/*rec colors */
+
+.light-shades {
+    background: v-bind('colorsStore.palette[0]');
+}
+
+.light-accent {
+    background: v-bind('colorsStore.palette[1]');
+}
+
+.main-color {
+    background: v-bind('colorsStore.palette[2]');
+}
+
+.dark-accent {
+    background: v-bind('colorsStore.palette[3]');
+}
+
+.dark-shades {
+    background: v-bind('colorsStore.palette[4]');
 }
 </style>
