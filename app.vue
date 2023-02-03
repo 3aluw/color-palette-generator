@@ -15,3 +15,8 @@ onMounted(async () => {
 
 })
 </script>
+<style>
+body {
+  margin: 0;
+}
+</style>
