@@ -43,7 +43,17 @@
             </div>
             <div class="css-cont">
 
-                {{ colorsStore.palette }}
+
+                <p>
+                    :root{ <br>
+                    --light-shades : {{ colorsStore.palette[0] }} <br>
+                    --light-accent : {{ colorsStore.palette[1] }} <br>
+                    --main-color : {{ colorsStore.palette[2] }} <br>
+                    --dark-accent: {{ colorsStore.palette[3] }} <br>
+                    --dark-shades: {{ colorsStore.palette[4] }} <br>
+                    }
+
+                </p>
                 <button @click="copySnippet">copy</button>
             </div>
 
