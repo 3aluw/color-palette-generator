@@ -46,11 +46,21 @@
 
                 <p>
                     :root{ <br>
-                    --light-shades : {{ colorsStore.palette[0] }} <br>
-                    --light-accent : {{ colorsStore.palette[1] }} <br>
-                    --main-color : {{ colorsStore.palette[2] }} <br>
-                    --dark-accent: {{ colorsStore.palette[3] }} <br>
-                    --dark-shades: {{ colorsStore.palette[4] }} <br>
+                    <span class="var-name"> --light-shades </span>: <span class="var-color">{{
+                        colorsStore.palette[0]
+                    }}</span>; <br>
+                    <span class="var-name"> --light-accent </span>: <span class="var-color">{{
+                        colorsStore.palette[1]
+                    }}</span>; <br>
+                    <span class="var-name"> --main-color : </span><span class="var-color">{{
+                        colorsStore.palette[2]
+                    }}</span>; <br>
+                    <span class="var-name"> --dark-accent:</span> <span class="var-color">{{
+                        colorsStore.palette[3]
+                    }}</span>; <br>
+                    <span class="var-name"> --dark-shades: </span><span class="var-color">{{
+                        colorsStore.palette[4]
+                    }}</span>; <br>
                     }
 
                 </p>
@@ -184,5 +194,28 @@ section {
 
 .dark-shades {
     background: v-bind('colorsStore.palette[4]');
+}
+
+
+
+/*css code generator */
+.css-cont {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    display: block;
+    overflow-x: auto;
+    padding: 1em;
+    background: #2b2b2b;
+    color: #f8f8f2;
+    font-size: 1.1rem;
+
+}
+
+.var-name {
+    color: #09c3e4;
+
+}
+
+.var-color {
+    color: #ebb031;
 }
 </style>
