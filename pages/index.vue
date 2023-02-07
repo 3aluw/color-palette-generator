@@ -41,10 +41,10 @@
                 </div>
 
             </div>
-            <div class="css-cont">
+            <div class="css-cont my-16">
 
 
-                <p>
+                <p ref="cssSnippet">
                     :root{ <br>
                     <span class="var-name"> --light-shades </span>: <span class="var-color">{{
                         colorsStore.palette[0]
@@ -62,9 +62,8 @@
                         colorsStore.palette[4]
                     }}</span>; <br>
                     }
-
                 </p>
-                <button @click="copySnippet">copy</button>
+                <v-btn variant="outlined" class="copy-btn" @click="copySnippet">{{ copyButtonText }}</v-btn>
             </div>
 
         </section>
@@ -102,12 +101,16 @@ const colorsDic = reactive({
     "dark-shades": colorsStore.palette[4],
 })
 
+
 const cssSnippet = ref(null)
+const copyButtonText = ref("Copy");
 const copySnippet = () => {
-
-    navigator.clipboard.writeText(colorsStore.palette[0].result);
-
+    navigator.clipboard.writeText(cssSnippet.value.innerText);
+    copyButtonText.value = "copied !"
+    setTimeout(() => { copyButtonText.value = "Copy" }, 2000)
 }
+
+
 </script>
 <style>
 section {
@@ -217,5 +220,11 @@ section {
 
 .var-color {
     color: #ebb031;
+}
+
+.copy-btn {
+    margin-block: 1rem;
+    width: 15rem;
+    font-size: 1.2rem;
 }
 </style>
