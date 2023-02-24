@@ -9,16 +9,15 @@
             </div>
             <div class="main-text-cont">
                 <p class="main-text">Colors enrichs our experience everywhere</p>
-                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white">
+                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white" size="large">
                     Generate a color palette
                 </v-btn>
             </div>
         </section>
 
-        <section>
-
-
+        <section class="second-section" >  
             <div class="palette-cont d-flex gap-8 justify-space-around">
+
                 <div class="color-cont">
                     <div class="color-rec light-shades"></div>
                     <p>Light shades</p>
@@ -40,7 +39,16 @@
                     <p>dark shades</p>
                 </div>
 
-            </div>
+            </div> 
+            <div class="color-palette-btns  d-flex gap-8 justify-space-around my-10">
+            <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large">
+                Regenerate
+            </v-btn>
+            <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick" class="text-white" size="large"  >
+                See it in action
+            </v-btn></div>
+        </section>
+            <section>
             <div class="css-cont my-16">
 
 
@@ -52,21 +60,21 @@
                     <span class="var-name"> --light-accent </span>: <span class="var-color">{{
                         colorsStore.palette[1]
                     }}</span>; <br>
-                    <span class="var-name"> --main-color : </span><span class="var-color">{{
+                    <span class="var-name"> --main-color  </span>: <span class="var-color">{{
                         colorsStore.palette[2]
                     }}</span>; <br>
-                    <span class="var-name"> --dark-accent:</span> <span class="var-color">{{
+                    <span class="var-name"> --dark-accent</span> : <span class="var-color">{{
                         colorsStore.palette[3]
                     }}</span>; <br>
-                    <span class="var-name"> --dark-shades: </span><span class="var-color">{{
+                    <span class="var-name"> --dark-shades </span>: <span class="var-color">{{
                         colorsStore.palette[4]
                     }}</span>; <br>
                     }
                 </p>
                 <v-btn variant="outlined" class="copy-btn" @click="copySnippet">{{ copyButtonText }}</v-btn>
-            </div>
+            </div></section>
 
-        </section>
+       
     </div>
 
 
@@ -76,7 +84,6 @@ import { useColorsStore } from '../store/colorsStore';
 const colorsStore = useColorsStore();
 onMounted(async () => {
     await colorsStore.fetchColorPalette();
-
 })
 
 onMounted(() => {
@@ -101,6 +108,8 @@ const colorsDic = reactive({
     "dark-shades": colorsStore.palette[4],
 })
 
+
+//section 3
 
 const cssSnippet = ref(null)
 const copyButtonText = ref("Copy");
@@ -148,12 +157,11 @@ section {
 
 /*2nd section */
 
+.second-section{
+     background-color: #D9D9D9;
+    padding-block: 3rem;
+}  
 
-.palette-cont {
-    background-color: #D9D9D9;
-    height: 12rem;
-    padding-block: 1rem;
-}
 
 .color-cont {
     width: 7.5rem;
