@@ -15,7 +15,7 @@
             </div>
         </section>
 
-        <section class="second-section" >  
+        <section class="second-section">
             <div class="palette-cont d-flex gap-8 justify-space-around">
 
                 <div class="color-cont">
@@ -39,16 +39,18 @@
                     <p>dark shades</p>
                 </div>
 
-            </div> 
+            </div>
             <div class="color-palette-btns  d-flex gap-8 justify-space-around my-10">
-            <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large">
-                Regenerate
-            </v-btn>
-            <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick" class="text-white" size="large"  >
-                See it in action
-            </v-btn></div>
+                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large">
+                    Regenerate
+                </v-btn>
+                <NuxtLink to="/template-one"> <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick"
+                        class="text-white" size="large">
+                        See it in action
+                    </v-btn></NuxtLink>
+            </div>
         </section>
-            <section>
+        <section>
             <div class="css-cont my-16">
 
 
@@ -60,7 +62,7 @@
                     <span class="var-name"> --light-accent </span>: <span class="var-color">{{
                         colorsStore.palette[1]
                     }}</span>; <br>
-                    <span class="var-name"> --main-color  </span>: <span class="var-color">{{
+                    <span class="var-name"> --main-color </span>: <span class="var-color">{{
                         colorsStore.palette[2]
                     }}</span>; <br>
                     <span class="var-name"> --dark-accent</span> : <span class="var-color">{{
@@ -72,19 +74,19 @@
                     }
                 </p>
                 <v-btn variant="outlined" class="copy-btn" @click="copySnippet">{{ copyButtonText }}</v-btn>
-            </div></section>
+            </div>
+        </section>
 
-       
+
     </div>
-
-
 </template>
 <script setup>
 import { useColorsStore } from '../store/colorsStore';
 const colorsStore = useColorsStore();
-onMounted(async () => {
-    await colorsStore.fetchColorPalette();
-})
+const fetchNewPallete = async () => await colorsStore.fetchColorPalette();
+
+
+onMounted(async () => await fetchNewPallete())
 
 onMounted(() => {
     setTimeout(() => { colorImage.value = true }, 1500)
@@ -157,10 +159,10 @@ section {
 
 /*2nd section */
 
-.second-section{
-     background-color: #D9D9D9;
+.second-section {
+    background-color: #D9D9D9;
     padding-block: 3rem;
-}  
+}
 
 
 .color-cont {
