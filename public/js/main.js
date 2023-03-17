@@ -1,6 +1,7 @@
+
 (function ($) {
     "use strict";
-    console.log("works")
+ 
 
     // Sticky Navbar
     $(window).scroll(function () {
@@ -96,4 +97,3 @@
 })(jQuery);
 
 
-console.log("works");

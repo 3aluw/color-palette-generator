@@ -1,4 +1,4 @@
-<template v-if="isStripeLoaded">
+<template >
     <!-- Topbar Start -->
     <div class="container-fluid px-5 d-none d-lg-block">
         <div class="row gx-5 py-3 align-items-center">
@@ -673,28 +673,33 @@
     <a href="#" class="btn btn-secondary py-3 fs-4 back-to-top"><i class="bi bi-arrow-up"></i></a>
 </template>
 
-<script>
-export default {
+<script setup >
 
-    data() {
-        return {
-            isStripeLoaded: false
-        }
+/*copy down     */
+useHead({
+    title: 'My App',
+    meta: [
+        { name: 'description', content: 'My amazing site.' }
+    ],
+    bodyAttrs: {
+        class: 'test'
     },
-    head() {
-        return {
-            title: 'Payment Page - My awesome project',
+    script: [{ hid: 'jQuery', src: 'https://code.jquery.com/jquery-3.4.1.min.js', defer: true, type: 'module' },
+    { hid: 'bootstrap', src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js', defer: true },
+    { hid: 'animateOne', src: '/js/lib/easing/easing.min.js', defer: true, type: 'module' },
+    { hid: 'animateFour', src: '/js/lib/waypoints/waypoints.min.js', defer: true, type: 'module' },
+    { hid: 'animateThree', src: '/js/lib/counterup/counterup.min.js', defer: true, type: 'module' },
+    { hid: 'animateTwo', src: '/js/lib/owlcarousel/owl.carousel.min.js', defer: true, type: 'module' },
 
-        }
-    }
-}
+    { hid: 'main', src: 'js/main.js', defer: true },
+    ]
+})
 </script>
-
-<style scoped>
-@import "/css/style.css";
+<style >
+@import "/lib/owlcarousel/assets/owl.carousel.min.css";
 @import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css";
 @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css";
 @import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap";
-@import "/lib/owlcarousel/assets/owl.carousel.min.css";
+@import "/css/style.css";
 @import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap";
 </style>
