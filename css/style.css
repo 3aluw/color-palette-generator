@@ -59,7 +59,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #8D9AA8;
-    background-color: #fff;
+    background-color: var(--light);
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -3694,7 +3694,7 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-light {
-    color: var(--light);
+    color: var(--bs-white);
     border-color: var(--light)
 }
 
@@ -3729,7 +3729,7 @@ fieldset:disabled .btn {
 
 .btn-outline-light:disabled,
 .btn-outline-light.disabled {
-    color: var(--light);
+    color: var(--bs-white);
     background-color: transparent
 }
 
@@ -12678,7 +12678,7 @@ fieldset:disabled .btn {
 }
 
 .service-item:hover {
-    color: var(--light);
+    color: var(--bs-white);
     background: var(--primary) !important;
 }
 
@@ -12691,7 +12691,7 @@ fieldset:disabled .btn {
 }
 
 .service-item:hover h4 {
-    color: var(--light);
+    color: var(--bs-white);
 }
 
 .product-item {

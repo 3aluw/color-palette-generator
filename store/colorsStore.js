@@ -2,7 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 
 
 export const useColorsStore = defineStore("ColorsStore", () => {
-const palette = ref(["EEF3F6","B5A890","3A6FDC","B34278","5038C1"])
+const palette = ref(["rgb(255, 253, 250)","rgb(181, 168, 144)","rgb(58, 111, 220)","rgb(179, 66, 120)","rgb(80, 56, 193)"])
 
 
 

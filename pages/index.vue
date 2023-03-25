@@ -83,6 +83,7 @@
 <script setup>
 import { useColorsStore } from '../store/colorsStore';
 const colorsStore = useColorsStore();
+console.log(colorsStore.palette)
 const fetchNewPallete = async () => await colorsStore.fetchColorPalette();
 
 
