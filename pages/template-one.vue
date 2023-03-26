@@ -1,27 +1,13 @@
 <template >
     <div class="basic-contaner" :style="cssVars">
         <div class="color-palette ">
-            <div class="color-cont">
-                <div class="color-cer light-shades"></div>
-                <p>Light shades</p>
+            <div class="color-cont" v-for="(color, index) in colorClasses" :key="color">
+                <div class="color-cer" :class="color"
+                    @click="openedColorPicker = openedColorPicker == index + 1 ? 0 : index + 1"></div>
+                <p>{{ color }}</p>
+                <v-color-picker v-if="openedColorPicker == index + 1" v-model="colorsStore.palette[index]"
+                    :modes="['hex']"></v-color-picker>
             </div>
-            <div class="color-cont">
-                <div class="color-cer light-accent"></div>
-                <p>Light accent</p>
-            </div>
-            <div class="color-cont">
-                <div class="color-cer main-color"></div>
-                <p>Main color</p>
-            </div>
-            <div class="color-cont">
-                <div class="color-cer dark-accent"></div>
-                <p>Dark accent</p>
-            </div>
-            <div class="color-cont">
-                <div class="color-cer dark-shades"></div>
-                <p>dark shades</p>
-            </div>
-
 
         </div>
         <!-- Topbar Start -->
@@ -740,6 +726,7 @@ useHead({
 })
 
 const colorsStore = useColorsStore();
+const colorClasses = ['light-shades', 'light-accent', 'main-color', 'dark-accent', 'dark-shades']
 const cssVars = computed(() => {
     return {
         '--light': colorsStore.palette[0],
@@ -749,6 +736,8 @@ const cssVars = computed(() => {
         '--dark-accent': colorsStore.palette[4]
     }
 })
+
+const openedColorPicker = ref(0)
 </script>
 <style >
 @import "/lib/owlcarousel/assets/owl.carousel.min.css";
@@ -785,7 +774,7 @@ const cssVars = computed(() => {
     gap: .5rem;
     text-align: center;
     align-items: center;
-
+    position: relative;
 }
 
 .color-cer {
@@ -818,5 +807,12 @@ const cssVars = computed(() => {
 
 .dark-shades {
     background: var(--dark);
+}
+
+.v-color-picker {
+    position: absolute;
+    top: 80px;
+    left: -100px;
+    z-index: 5;
 }
 </style>
