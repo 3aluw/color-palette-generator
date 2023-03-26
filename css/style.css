@@ -7018,7 +7018,7 @@ fieldset:disabled .btn {
 
 .sticky-top {
     position: sticky;
-    top: 0;
+    top: 100px;
     z-index: 1020
 }
 

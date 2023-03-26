@@ -760,12 +760,20 @@ const cssVars = computed(() => {
 </style>
 <style scoped>
 .color-palette {
-    padding-block: 30px;
+
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     background-color: rgb(0, 0, 0);
     color: white;
+    z-index: 5;
+
+}
+
+.sticky-palette {
+    position: sticky;
+    top: 0px;
+    height: 100px;
 }
 
 .color-cont {
@@ -776,17 +784,24 @@ const cssVars = computed(() => {
     justify-content: center;
     gap: .5rem;
     text-align: center;
+    align-items: center;
+
 }
 
 .color-cer {
-    aspect-ratio: 1/1;
-    height: 60%;
+    width: 4rem;
+    height: 4rem;
     border-radius: 100%;
 
 }
 
+.undiplayed {
+    display: none;
+}
+
 .light-shades {
     background: var(--light);
+
 }
 
 .light-accent {

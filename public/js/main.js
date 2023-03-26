@@ -7,8 +7,12 @@
     $(window).scroll(function () {
         if ($(this).scrollTop() > 40) {
             $('.navbar').addClass('sticky-top');
+            $('.color-palette').addClass('sticky-palette');
+            $('.color-cont>p').addClass('undiplayed');
         } else {
             $('.navbar').removeClass('sticky-top');
+            $('.color-palette').removeClass('sticky-palette');
+            $('.color-cont>p').removeClass('undiplayed');
         }
     });
     
