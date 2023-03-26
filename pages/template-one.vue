@@ -1,6 +1,29 @@
 <template >
     <div class="basic-contaner" :style="cssVars">
+        <div class="color-palette ">
+            <div class="color-cont">
+                <div class="color-cer light-shades"></div>
+                <p>Light shades</p>
+            </div>
+            <div class="color-cont">
+                <div class="color-cer light-accent"></div>
+                <p>Light accent</p>
+            </div>
+            <div class="color-cont">
+                <div class="color-cer main-color"></div>
+                <p>Main color</p>
+            </div>
+            <div class="color-cont">
+                <div class="color-cer dark-accent"></div>
+                <p>Dark accent</p>
+            </div>
+            <div class="color-cont">
+                <div class="color-cer dark-shades"></div>
+                <p>dark shades</p>
+            </div>
 
+
+        </div>
         <!-- Topbar Start -->
         <div class="container-fluid px-5 d-none d-lg-block">
             <div class="row gx-5 py-3 align-items-center">
@@ -701,7 +724,7 @@ import { useColorsStore } from '../store/colorsStore';
 useHead({
     title: 'template',
     meta: [
-        { name: 'description', content: 'My amazing site.' }
+        { name: 'description', content: 'A demo for the generated palette' }
     ],
     bodyAttrs: {
         class: 'test'
@@ -734,4 +757,51 @@ const cssVars = computed(() => {
 @import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap";
 @import "/css/style.css";
 @import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap";
+</style>
+<style scoped>
+.color-palette {
+    padding-block: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.color-cont {
+    width: 7.5rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .5rem;
+    text-align: center;
+}
+
+.color-cer {
+    aspect-ratio: 1/1;
+    height: 60%;
+    border-radius: 100%;
+
+}
+
+.light-shades {
+    background: var(--light);
+}
+
+.light-accent {
+    background: var(--secondary);
+}
+
+.main-color {
+    background: var(--primary);
+}
+
+.dark-accent {
+    background: var(--dark-accent);
+}
+
+.dark-shades {
+    background: var(--dark);
+}
 </style>

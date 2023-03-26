@@ -8,6 +8,18 @@ const palette = ref(["rgb(255, 253, 250)","rgb(181, 168, 144)","rgb(58, 111, 220
 
 
 //functions
+//rgbToHex finctions
+function componentToHex(c) {
+  var hex = c.toString(16);
+  return hex.length == 1 ? "0" + hex : hex;
+}
+
+function rgbToHex([r, g, b]) {
+  return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+}
+
+
+
 async function fetchColorPalette (){
 
 
@@ -18,9 +30,9 @@ async function fetchColorPalette (){
  
  const newPalette=  await res.json();
  palette.value = [];
- newPalette.result.forEach((el)=>{ palette.value.push(`rgb(${el.toString()})`) })
+ newPalette.result.forEach((el)=>{ palette.value.push(`${rgbToHex(el)}`) })
  
- 
+ console.log(palette.value)
 
 }
 

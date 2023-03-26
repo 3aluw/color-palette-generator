@@ -124,7 +124,11 @@ const copySnippet = () => {
 
 
 </script>
-<style>
+<style  >
+body {
+    color: black;
+}
+
 section {
     margin-bottom: 5rem;
 }
