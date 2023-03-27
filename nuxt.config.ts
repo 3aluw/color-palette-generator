@@ -12,7 +12,7 @@ export default defineNuxtConfig({
               ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
             ],
           },
-        ],
+        ],'@pinia-plugin-persistedstate/nuxt',
       ],
       css: ['vuetify/lib/styles/main.sass','@mdi/font/css/materialdesignicons.min.css'],
       build: {

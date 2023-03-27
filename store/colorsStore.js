@@ -2,7 +2,7 @@ import { defineStore, acceptHMRUpdate } from "pinia";
 
 
 export const useColorsStore = defineStore("ColorsStore", () => {
-const palette = ref(["#fffdfa","#b5a890","#3a6fdc","#b34278","#5038c1"])
+const palette = ref(["#fffdfa","#263A4F","#34AD54","#FF9933","#785E57"])
 
 
 
@@ -40,7 +40,9 @@ async function fetchColorPalette (){
   return {
    palette,fetchColorPalette
   };
-});
+},{
+  persist: true}
+);
 
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useColorsStore, import.meta.hot));

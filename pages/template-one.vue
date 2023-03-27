@@ -727,17 +727,25 @@ useHead({
 
 const colorsStore = useColorsStore();
 const colorClasses = ['light-shades', 'light-accent', 'main-color', 'dark-accent', 'dark-shades']
-const cssVars = computed(() => {
-    return {
+const cssVars = reactive(
+    {
         '--light': colorsStore.palette[0],
         '--dark': colorsStore.palette[1],
         '--primary': colorsStore.palette[2],
         '--secondary': colorsStore.palette[3],
         '--dark-accent': colorsStore.palette[4]
     }
-})
+)
 
 const openedColorPicker = ref(0)
+watch(
+    () => colorsStore.palette,
+    (newValue) => {
+        console.log(newValue)
+    },
+    { deep: true }
+)
+onMounted(() => { console.log(colorsStore.palette) })
 </script>
 <style >
 @import "/lib/owlcarousel/assets/owl.carousel.min.css";
