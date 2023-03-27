@@ -1,6 +1,12 @@
 <template >
     <div class="basic-contaner" :style="cssVars">
-        <div class="color-palette ">
+        <div class="color-palette d-none d-sm-flex">
+            <div class="color-cont">
+                <div class="refresh-cer">
+                    <v-icon icon="mdi-refresh" size="x-large"></v-icon>
+                </div>
+                <p>Regenerate</p>
+            </div>
             <div class="color-cont" v-for="(color, index) in colorClasses" :key="color">
                 <div class="color-cer" :class="color"
                     @click="openedColorPicker = openedColorPicker == index + 1 ? 0 : index + 1"></div>
@@ -785,11 +791,36 @@ onMounted(() => { console.log(colorsStore.palette) })
     position: relative;
 }
 
+.refresh-cer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    background-color: rgb(62, 102, 251);
+    cursor: pointer;
+}
+
+
+
+.mdi-refresh {
+    color: white;
+}
+
+.refresh-cer:active {
+    background-color: white;
+}
+
+.refresh-cer:active>.mdi-refresh {
+    color: rgb(62, 102, 251);
+}
+
 .color-cer {
     width: 4rem;
     height: 4rem;
     border-radius: 100%;
-
+    background-color: white;
 }
 
 .undiplayed {
@@ -817,10 +848,16 @@ onMounted(() => { console.log(colorsStore.palette) })
     background: var(--dark);
 }
 
+
+
 .v-color-picker {
     position: absolute;
     top: 80px;
-    left: -100px;
+
     z-index: 5;
+}
+
+.color-cont:nth-child(n+4):nth-child(-n+6)>.v-color-picker {
+    right: 50px;
 }
 </style>
