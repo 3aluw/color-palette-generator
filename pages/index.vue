@@ -9,7 +9,8 @@
             </div>
             <div class="main-text-cont">
                 <p class="main-text">Colors enrichs our experience everywhere</p>
-                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white" size="large">
+                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white" size="large"
+                    @click="fetchNewPallete">
                     Generate a color palette
                 </v-btn>
             </div>
@@ -41,7 +42,8 @@
 
             </div>
             <div class="color-palette-btns  d-flex gap-8 justify-space-around my-10">
-                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large">
+                <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large"
+                    @click="fetchNewPallete">
                     Regenerate
                 </v-btn>
                 <NuxtLink to="/template-one"> <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick"
@@ -87,7 +89,6 @@ console.log(colorsStore.palette)
 const fetchNewPallete = async () => await colorsStore.fetchColorPalette();
 
 
-onMounted(async () => await fetchNewPallete())
 
 onMounted(() => {
     setTimeout(() => { colorImage.value = true }, 1500)

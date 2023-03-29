@@ -28,8 +28,8 @@
             </v-layout></v-card>
         <div class="color-palette d-none d-sm-flex">
             <div class="color-cont">
-                <div class="refresh-cer">
-                    <v-icon icon="mdi-refresh" size="x-large"></v-icon>
+                <div class="refresh-cer" @click="rotateIcon">
+                    <v-icon icon="mdi-refresh" size="x-large" :class="{ rotate: rotate }"></v-icon>
                 </div>
                 <p>Regenerate</p>
             </div>
@@ -773,6 +773,11 @@ const cssVars = computed(() => {
 })
 const openedColorPicker = ref(0)
 const drawer = ref(false);
+const rotate = ref(false);
+const rotateIcon = () => {
+    colorsStore.fetchColorPalette()
+    rotate.value = true, setTimeout(() => { rotate.value = false }, 1500)
+}
 
 </script>
 <style >
@@ -890,6 +895,10 @@ const drawer = ref(false);
     background: black;
 }
 
+.rotate {
+    transform: rotate(360deg);
+    transition: transform 1.5s ease-in-out;
+}
 
 /*small screens styling */
 @media screen and (max-width:600px) {

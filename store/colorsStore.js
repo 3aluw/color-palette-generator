@@ -22,7 +22,7 @@ function rgbToHex([r, g, b]) {
 
 async function fetchColorPalette (){
 
-
+try{
  const res = await fetch("http://colormind.io/api/",{
   method: "POST",
     body : JSON.stringify({"model":"ui"})
@@ -31,8 +31,10 @@ async function fetchColorPalette (){
  const newPalette=  await res.json();
  palette.value = [];
  newPalette.result.forEach((el)=>{ palette.value.push(`${rgbToHex(el)}`) })
- 
-
+}
+catch(Error){
+  console.log("Got an Error", Error)
+}
 
 }
 
