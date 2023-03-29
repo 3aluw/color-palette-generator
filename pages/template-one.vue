@@ -1,5 +1,31 @@
 <template >
     <div class="basic-contaner" :style="cssVars">
+        <v-card>
+            <v-layout>
+
+
+                <v-app-bar color="primary" style="position:sticky;" class="d-block d-sm-none">
+                    <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+
+                    <v-toolbar-title>color palette</v-toolbar-title>
+
+                </v-app-bar>
+
+                <v-navigation-drawer v-model="drawer" location="bottom" temporary style="background: black;">
+
+                    <div class="color-cont" v-for="(color, index) in colorClasses" :key="color">
+                        <div class="color-cer d-flex justify-center align-center" :class="color"
+                            @click="openedColorPicker = openedColorPicker == index + 1 ? 0 : index + 1"> <v-icon
+                                icon="mdi-close-circle" size="x-large" v-if="openedColorPicker == index + 1"></v-icon></div>
+
+                        <v-color-picker v-if="openedColorPicker == index + 1" v-model="colorsStore.palette[index]"
+                            :modes="['hex']"></v-color-picker>
+                    </div>
+                </v-navigation-drawer>
+
+
+
+            </v-layout></v-card>
         <div class="color-palette d-none d-sm-flex">
             <div class="color-cont">
                 <div class="refresh-cer">
@@ -8,8 +34,10 @@
                 <p>Regenerate</p>
             </div>
             <div class="color-cont" v-for="(color, index) in colorClasses" :key="color">
-                <div class="color-cer" :class="color"
-                    @click="openedColorPicker = openedColorPicker == index + 1 ? 0 : index + 1"></div>
+                <div class="color-cer d-flex justify-center align-center" :class="color"
+                    @click="openedColorPicker = openedColorPicker == index + 1 ? 0 : index + 1">
+                    <v-icon icon="mdi-close-circle" size="x-large" v-if="openedColorPicker == index + 1"></v-icon>
+                </div>
                 <p>{{ color }}</p>
                 <v-color-picker v-if="openedColorPicker == index + 1" v-model="colorsStore.palette[index]"
                     :modes="['hex']"></v-color-picker>
@@ -17,7 +45,7 @@
 
         </div>
         <!-- Topbar Start -->
-        <div class="container-fluid px-5 d-none d-lg-block">
+        <div class="container-fluid px-5 d-none d-lg-block top-bar">
             <div class="row gx-5 py-3 align-items-center">
                 <div class="col-lg-3">
                     <div class="d-flex align-items-center justify-content-start">
@@ -714,7 +742,7 @@
 import { useColorsStore } from '../store/colorsStore';
 
 useHead({
-    title: 'template',
+    title: 'Demo',
     meta: [
         { name: 'description', content: 'A demo for the generated palette' }
     ],
@@ -733,25 +761,19 @@ useHead({
 
 const colorsStore = useColorsStore();
 const colorClasses = ['light-shades', 'light-accent', 'main-color', 'dark-accent', 'dark-shades']
-const cssVars = reactive(
-    {
-        '--light': colorsStore.palette[0],
-        '--dark': colorsStore.palette[1],
-        '--primary': colorsStore.palette[2],
-        '--secondary': colorsStore.palette[3],
-        '--dark-accent': colorsStore.palette[4]
-    }
-)
 
+const cssVars = computed(() => {
+    return {
+        '--light': colorsStore.palette[0],
+        '--dark': colorsStore.palette[4],
+        '--primary': colorsStore.palette[2],
+        '--secondary': colorsStore.palette[1],
+        '--dark-accent': colorsStore.palette[3]
+    }
+})
 const openedColorPicker = ref(0)
-watch(
-    () => colorsStore.palette,
-    (newValue) => {
-        console.log(newValue)
-    },
-    { deep: true }
-)
-onMounted(() => { console.log(colorsStore.palette) })
+const drawer = ref(false);
+
 </script>
 <style >
 @import "/lib/owlcarousel/assets/owl.carousel.min.css";
@@ -859,5 +881,24 @@ onMounted(() => { console.log(colorsStore.palette) })
 
 .color-cont:nth-child(n+4):nth-child(-n+6)>.v-color-picker {
     right: 50px;
+}
+
+.v-navigation-drawer__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: black;
+}
+
+
+/*small screens styling */
+@media screen and (max-width:600px) {
+    .color-cont:nth-child(n+4):nth-child(-n+6)>.v-color-picker {
+        right: auto;
+    }
+
+    .sticky-top {
+        top: 0;
+    }
 }
 </style>
