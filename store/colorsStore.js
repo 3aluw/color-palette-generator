@@ -32,7 +32,7 @@ async function fetchColorPalette (){
  palette.value = [];
  newPalette.result.forEach((el)=>{ palette.value.push(`${rgbToHex(el)}`) })
  
- console.log(palette.value)
+
 
 }
 

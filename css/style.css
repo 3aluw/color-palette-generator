@@ -7019,14 +7019,14 @@ fieldset:disabled .btn {
 .sticky-top {
     position: sticky;
     top: 100px;
-    z-index: 1020
+
 }
 
 @media (min-width: 576px) {
     .sticky-sm-top {
         position: sticky;
         top: 0;
-        z-index: 1020
+
     }
 }
 
@@ -12665,8 +12665,9 @@ fieldset:disabled .btn {
 }
 
 .service-item {
-    box-shadow: 0 0 45px #EDEDED;
+    box-shadow: 0 0 45px #462c2c;
     transition: .5s;
+    cursor: pointer;
 }
 
 .about i,
