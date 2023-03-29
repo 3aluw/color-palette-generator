@@ -10,34 +10,23 @@
             <div class="main-text-cont">
                 <p class="main-text">Colors enrichs our experience everywhere</p>
                 <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white" size="large"
-                    @click="fetchNewPallete">
+                    @click="fetchNewPallete" href="#pallette">
                     Generate a color palette
                 </v-btn>
             </div>
         </section>
 
         <section class="second-section">
-            <div class="palette-cont d-flex gap-8 justify-space-around">
+            <div class="palette-cont d-flex gap-8 justify-space-around" id="pallette">
 
-                <div class="color-cont">
-                    <div class="color-rec light-shades"></div>
-                    <p>Light shades</p>
-                </div>
-                <div class="color-cont">
-                    <div class="color-rec light-accent"></div>
-                    <p>Light accent</p>
-                </div>
-                <div class="color-cont">
-                    <div class="color-rec main-color"></div>
-                    <p>Main color</p>
-                </div>
-                <div class="color-cont">
-                    <div class="color-rec dark-accent"></div>
-                    <p>Dark accent</p>
-                </div>
-                <div class="color-cont">
-                    <div class="color-rec dark-shades"></div>
-                    <p>dark shades</p>
+                <div class="color-cont" v-for="(colorValue, colorName, index) in colorsDic">
+                    <div class="color-rec d-flex justify-center" :class="colorName"
+                        @click="openedColorPicker = openedColorPicker == index + 1 ? 0 : index + 1">
+                        <v-icon icon="mdi-close-circle" size="x-large" v-if="openedColorPicker == index + 1"></v-icon>
+                    </div>
+                    <p>{{ colorName }}</p>
+                    <v-color-picker v-if="openedColorPicker == index + 1" v-model="colorsStore.palette[index]"
+                        :modes="['hex']"></v-color-picker>
                 </div>
 
             </div>
@@ -104,15 +93,19 @@ const colorImage = ref(false);
 
 // colors dic
 
-const colorsDic = reactive({
-    "light-shades": colorsStore.palette[0],
-    "light-accent": colorsStore.palette[1],
-    "main-color": colorsStore.palette[2],
-    "dark-accent": colorsStore.palette[3],
-    "dark-shades": colorsStore.palette[4],
+const colorsDic = computed(() => {
+    return {
+        "light-shades": colorsStore.palette[0],
+        "light-accent": colorsStore.palette[1],
+        "main-color": colorsStore.palette[2],
+        "dark-accent": colorsStore.palette[3],
+        "dark-shades": colorsStore.palette[4],
+    }
 })
 
+//color picker opener 
 
+const openedColorPicker = ref(0)
 //section 3
 
 const cssSnippet = ref(null)
@@ -170,6 +163,9 @@ section {
     padding-block: 3rem;
 }
 
+.palette-cont {
+    scroll-padding-top: 50px;
+}
 
 .color-cont {
     width: 7.5rem;
@@ -178,6 +174,7 @@ section {
     flex-direction: column;
     justify-content: center;
     gap: .5rem;
+    position: relative;
 }
 
 .color-cont>p {
@@ -185,12 +182,27 @@ section {
     font-style: normal;
     font-weight: 600;
     font-size: 1rem;
+    height: 3rem;
 }
 
 .color-rec {
     background: blue;
     width: 100%;
     aspect-ratio: 1 / 1;
+}
+
+/*color picker */
+.v-color-picker {
+    position: absolute;
+    top: 100px;
+
+    z-index: 5;
+}
+
+
+
+.color-cont:nth-child(n+4):nth-child(-n+6)>.v-color-picker {
+    right: 50px;
 }
 
 /*rec colors */
@@ -228,6 +240,8 @@ section {
     font-size: 1.1rem;
 
 }
+
+
 
 .var-name {
     color: #09c3e4;
