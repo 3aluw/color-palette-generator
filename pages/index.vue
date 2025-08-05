@@ -35,7 +35,7 @@
                     @click="fetchNewPalette">
                     Regenerate
                 </v-btn>
-                <NuxtLink to="/template-one"> <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick"
+                <NuxtLink to="/demo"> <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick"
                         class="text-white" size="large">
                         See it in action
                     </v-btn></NuxtLink>
