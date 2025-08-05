@@ -8,7 +8,7 @@
                     alt="colorful image">
             </div>
             <div class="main-text-cont">
-                <p class="main-text">Colors enrichs our experience everywhere</p>
+                <p class="main-text">Colors enriches our experience everywhere</p>
                 <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white" size="large"
                     @click="fetchNewPalette" href="#pallette">
                     Generate a color palette
@@ -41,7 +41,7 @@
                     </v-btn></NuxtLink>
             </div>
         </section>
-        <section class="css-cont mt-8">
+        <section class="css-cont">
             <div >
                 <p ref="cssSnippet">
                     :root{ <br>
