@@ -1,14 +1,14 @@
 <template>
     <div class="cont">
 
-        <section>
+        <section class="first-section">
             <div class="main-img-cont">
                 <img class="main-pic" :class="{ recoler: colorImage }"
                     src="https://images.unsplash.com/photo-1459478309853-2c33a60058e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
                     alt="colorful image">
             </div>
             <div class="main-text-cont">
-                <p class="main-text">Colors enrichs our experience everywhere</p>
+                <p class="main-text">Colors enriches our experience everywhere</p>
                 <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-down-thick" class="text-white" size="large"
                     @click="fetchNewPalette" href="#pallette">
                     Generate a color palette
@@ -30,21 +30,19 @@
                 </div>
 
             </div>
-            <div class="color-palette-btns  d-flex gap-8 justify-space-around my-10">
+            <div class="color-palette-btns  d-flex ga-1 wrap  justify-space-around my-10">
                 <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large"
                     @click="fetchNewPalette">
                     Regenerate
                 </v-btn>
-                <NuxtLink to="/template-one"> <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick"
+                <NuxtLink to="/demo"> <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-arrow-right-thick"
                         class="text-white" size="large">
                         See it in action
                     </v-btn></NuxtLink>
             </div>
         </section>
-        <section>
-            <div class="css-cont my-16">
-
-
+        <section class="css-cont">
+            <div >
                 <p ref="cssSnippet">
                     :root{ <br>
                     <span class="var-name"> --light-shades </span>: <span class="var-color">{{
@@ -104,14 +102,13 @@ const colorsDic = computed(() => {
 })
 
 //color picker opener 
-
 const openedColorPicker = ref(0)
 //section 3
 
 const cssSnippet = ref(null)
 const copyButtonText = ref("Copy");
 const copySnippet = () => {
-    navigator.clipboard.writeText(cssSnippet.value.innerText);
+   colorsStore.copyCSSSnippet()
     copyButtonText.value = "copied !"
     setTimeout(() => { copyButtonText.value = "Copy" }, 2000)
 }
@@ -123,12 +120,10 @@ body {
     color: black;
 }
 
-section {
-    margin-bottom: 5rem;
-}
-
 /*section -1*/
-
+.first-section{
+    margin-bottom: 5rem ;
+}
 .main-img-cont {
     width: 100vw;
 }
