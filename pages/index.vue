@@ -67,6 +67,7 @@
                 <v-btn variant="outlined" class="copy-btn" @click="copySnippet">{{ copyButtonText }}</v-btn>
             </div>
         </section>
+        {{ ncolorsDic }}
 
 
     </div>
@@ -104,14 +105,13 @@ const colorsDic = computed(() => {
 })
 
 //color picker opener 
-
 const openedColorPicker = ref(0)
 //section 3
 
 const cssSnippet = ref(null)
 const copyButtonText = ref("Copy");
 const copySnippet = () => {
-    navigator.clipboard.writeText(cssSnippet.value.innerText);
+   colorsStore.copyCSSSnippet()
     copyButtonText.value = "copied !"
     setTimeout(() => { copyButtonText.value = "Copy" }, 2000)
 }

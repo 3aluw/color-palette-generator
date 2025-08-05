@@ -12,6 +12,9 @@
                     <v-btn icon variant="text" @click="rotateIcon">
                         <v-icon icon="mdi-refresh" color="black" :class="{ rotate: rotate }"></v-icon>
                     </v-btn>
+                    <v-btn icon variant="text" @click="copyCSSSnippet()">
+                        <v-icon :icon="copyToClipboardIcon" color="black"></v-icon>
+                    </v-btn>
                 </h2>
                 <div class="palette">
                     <div v-for="(color, index) in colorClasses" :key="color">
@@ -39,34 +42,34 @@
             </section>
 
             <!-- Buttons -->
-<!-- Buttons -->
-<section>
-  <h2>Buttons</h2>
+            <!-- Buttons -->
+            <section>
+                <h2>Buttons</h2>
 
-  <h3>Solid Buttons</h3>
-  <div class="buttons-group">
-    <button class="btn btn-primary">Primary</button>
-    <button class="btn btn-secondary">Secondary</button>
-    <button class="btn btn-dark">Dark</button>
-    <button class="btn btn-accent">Dark Accent</button>
-  </div>
+                <h3>Solid Buttons</h3>
+                <div class="buttons-group">
+                    <button class="btn btn-primary">Primary</button>
+                    <button class="btn btn-secondary">Secondary</button>
+                    <button class="btn btn-dark">Dark</button>
+                    <button class="btn btn-accent">Dark Accent</button>
+                </div>
 
-  <h3>Outlined Buttons</h3>
-  <div class="buttons-group">
-    <button class="btn btn-outline btn-primary">Primary</button>
-    <button class="btn btn-outline btn-secondary">Secondary</button>
-    <button class="btn btn-outline btn-dark">Dark</button>
-    <button class="btn btn-outline btn-accent">Dark Accent</button>
-  </div>
+                <h3>Outlined Buttons</h3>
+                <div class="buttons-group">
+                    <button class="btn btn-outline btn-primary">Primary</button>
+                    <button class="btn btn-outline btn-secondary">Secondary</button>
+                    <button class="btn btn-outline btn-dark">Dark</button>
+                    <button class="btn btn-outline btn-accent">Dark Accent</button>
+                </div>
 
-  <h3>Ghost / Text Buttons</h3>
-  <div class="buttons-group">
-    <button class="btn btn-ghost btn-primary">Primary</button>
-    <button class="btn btn-ghost btn-secondary">Secondary</button>
-    <button class="btn btn-ghost btn-dark">Dark</button>
-    <button class="btn btn-ghost btn-accent">Dark Accent</button>
-  </div>
-</section>
+                <h3>Ghost / Text Buttons</h3>
+                <div class="buttons-group">
+                    <button class="btn btn-ghost btn-primary">Primary</button>
+                    <button class="btn btn-ghost btn-secondary">Secondary</button>
+                    <button class="btn btn-ghost btn-dark">Dark</button>
+                    <button class="btn btn-ghost btn-accent">Dark Accent</button>
+                </div>
+            </section>
 
             <!-- Forms -->
             <section>
@@ -169,9 +172,15 @@ const cssVars = computed(() => {
         '--dark-accent': colorsStore.palette[3]
     }
 })
-const openedColorPicker = ref(0)
-const drawer = ref(false);
+const copyToClipboardIcon = ref("mdi-clipboard-outline")
 const rotate = ref(false);
+const copyCSSSnippet = () => {
+    copyToClipboardIcon.value = "mdi-check"
+    colorsStore.copyCSSSnippet()
+    setTimeout(() => {
+        copyToClipboardIcon.value = "mdi-clipboard-outline"
+    }, 2000)
+}
 const rotateIcon = () => {
     colorsStore.fetchColorPalette()
     rotate.value = true, setTimeout(() => { rotate.value = false }, 1500)
@@ -380,69 +389,101 @@ h6 {
 
 /* Buttons */
 .buttons-group {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
 }
 
 .btn {
-  padding: 0.7rem 1.2rem;
-  border-radius: 4px;
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: capitalize;
+    padding: 0.7rem 1.2rem;
+    border-radius: 4px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: capitalize;
 }
 
 /* Solid buttons */
-.btn-primary { background: var(--primary); color: var(--light); }
-.btn-secondary { background: var(--secondary); color: var(--light); }
-.btn-dark { background: var(--dark); color: var(--light); }
-.btn-accent { background: var(--dark-accent); color: var(--light); }
+.btn-primary {
+    background: var(--primary);
+    color: var(--light);
+}
+
+.btn-secondary {
+    background: var(--secondary);
+    color: var(--light);
+}
+
+.btn-dark {
+    background: var(--dark);
+    color: var(--light);
+}
+
+.btn-accent {
+    background: var(--dark-accent);
+    color: var(--light);
+}
 
 .btn:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 /* Outlined buttons */
 .btn-outline {
-  background: transparent;
-  border: 2px solid;
+    background: transparent;
+    border: 2px solid;
 }
+
 .btn-outline.btn-primary {
-  border-color: var(--primary);
-  color: var(--primary);
+    border-color: var(--primary);
+    color: var(--primary);
 }
+
 .btn-outline.btn-secondary {
-  border-color: var(--secondary);
-  color: var(--secondary);
+    border-color: var(--secondary);
+    color: var(--secondary);
 }
+
 .btn-outline.btn-dark {
-  border-color: var(--dark);
-  color: var(--dark);
+    border-color: var(--dark);
+    color: var(--dark);
 }
+
 .btn-outline.btn-accent {
-  border-color: var(--dark-accent);
-  color: var(--dark-accent);
+    border-color: var(--dark-accent);
+    color: var(--dark-accent);
 }
+
 .btn-outline:hover {
-  background-color: rgba(0, 0, 0, 0.04);
+    background-color: rgba(0, 0, 0, 0.04);
 }
 
 /* Ghost (text) buttons */
 .btn-ghost {
-  background: transparent;
-  border: none;
+    background: transparent;
+    border: none;
 }
-.btn-ghost.btn-primary { color: var(--primary); }
-.btn-ghost.btn-secondary { color: var(--secondary); }
-.btn-ghost.btn-dark { color: var(--dark); }
-.btn-ghost.btn-accent { color: var(--dark-accent); }
+
+.btn-ghost.btn-primary {
+    color: var(--primary);
+}
+
+.btn-ghost.btn-secondary {
+    color: var(--secondary);
+}
+
+.btn-ghost.btn-dark {
+    color: var(--dark);
+}
+
+.btn-ghost.btn-accent {
+    color: var(--dark-accent);
+}
 
 .btn-ghost:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 
