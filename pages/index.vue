@@ -30,7 +30,7 @@
                 </div>
 
             </div>
-            <div class="color-palette-btns  d-flex gap-8 justify-space-around my-10">
+            <div class="color-palette-btns  d-flex ga-1 wrap  justify-space-around my-10">
                 <v-btn rounded="lg" color="#3E66FB" prepend-icon="mdi-rotate-right" class="text-white" size="large"
                     @click="fetchNewPalette">
                     Regenerate
