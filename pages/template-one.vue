@@ -781,12 +781,7 @@ const rotateIcon = () => {
 
 </script>
 <style >
-@import "/lib/owlcarousel/assets/owl.carousel.min.css";
-@import "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css";
-@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css";
-@import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap";
 @import "/css/style.css";
-@import "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap";
 </style>
 <style scoped>
 .color-palette {
