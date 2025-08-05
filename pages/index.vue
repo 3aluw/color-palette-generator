@@ -1,7 +1,7 @@
 <template>
     <div class="cont">
 
-        <section>
+        <section class="first-section">
             <div class="main-img-cont">
                 <img class="main-pic" :class="{ recoler: colorImage }"
                     src="https://images.unsplash.com/photo-1459478309853-2c33a60058e7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
@@ -41,10 +41,8 @@
                     </v-btn></NuxtLink>
             </div>
         </section>
-        <section>
-            <div class="css-cont my-16">
-
-
+        <section class="css-cont mt-8">
+            <div >
                 <p ref="cssSnippet">
                     :root{ <br>
                     <span class="var-name"> --light-shades </span>: <span class="var-color">{{
@@ -67,7 +65,6 @@
                 <v-btn variant="outlined" class="copy-btn" @click="copySnippet">{{ copyButtonText }}</v-btn>
             </div>
         </section>
-        {{ ncolorsDic }}
 
 
     </div>
@@ -123,12 +120,10 @@ body {
     color: black;
 }
 
-section {
-    margin-bottom: 5rem;
-}
-
 /*section -1*/
-
+.first-section{
+    margin-bottom: 5rem ;
+}
 .main-img-cont {
     width: 100vw;
 }
